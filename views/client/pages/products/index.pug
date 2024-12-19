@@ -1,0 +1,19 @@
+extends ../../layouts/default.pug
+include ../../mixins/boxhead.pug
+block main
+  +box-head("ds san pham")
+
+  .product_list
+    .row
+      each item in products
+        .product-item
+          .inner-img
+            img(src=item.thumbnail, alt='')
+            .product_percent
+          .inner-content
+            h5.title #{item.title}
+          .innner-meta
+            .inner-price #{item.price}
+            .inner-stock #{item.priceNew}
+
+        

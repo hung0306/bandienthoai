@@ -1,0 +1,10 @@
+mixin form-change-multi(path)
+    form(action=path method="POST" form-change-multi)
+        select(name="type")
+            option(disabled selected) -- chon hanh dong --
+            option(value="active") hoat dong 
+            option(value="inactive") dung hoat dong 
+            option(value="delete-all") xoa tat ca 
+            option(value="change-position") thay doi vi tri
+        input(type="text" name="ids" value="")
+        button(type="submit") ap dung

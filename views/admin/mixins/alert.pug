@@ -1,0 +1,5 @@
+mixin alert-success(time)
+    - if (messages.success)
+        .message.info
+        div(data-time=time show-alert)
+            span= messages.success

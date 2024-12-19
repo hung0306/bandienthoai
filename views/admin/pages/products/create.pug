@@ -1,0 +1,38 @@
+extends ../../layouts/default.pug
+
+block main 
+    h1 them san pham
+    form(action=`${prefixAdmin}/products/create` id="form-create-product" method="POST" enctype="multipart/form-data")
+        div
+            label(for="title") tieu de 
+            input(type="text" id="title" name="title" require)
+        div
+            label(for="desc") mo ta
+            textarea(name="description" id="desc"  row = "5")
+        div
+            label(for="price") gia
+            input(id="price" name="price" require value="0" type="number" min="0")
+        div
+            label(for="discount") giam gia 
+            input(type="number" id="discount" name="discountPercentage" value="0" min="0")
+        div
+            label(for="stock") so luong 
+            input(type="number" id="stock" name="stock" value="0" min="0")
+        div
+            label(for="thumbnail") anh
+            input(type="file" id="thumbnail" name="thumbnail" accept="image/*")
+        div
+            label(for="position") vi tri
+            input(type="number" id="position" name="position" min="1" placeholder="tu dong tang")
+        div
+            input(type="radio" id="statusActive" name="status" value="active" checked)
+            label(for="statusActive") hoat dong
+        div
+            input(type="radio" id="statusInActive" name="status" value="inactive" )
+            label(for="statusInActive") dung hoat dong
+        div 
+            button(type="submit") tao moi
+
+
+
+    script(src="/admin/js/product.js")
