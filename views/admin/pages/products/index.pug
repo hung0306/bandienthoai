@@ -4,7 +4,7 @@ include ../../mixins/search.pug
 include ../../mixins/pagination.pug
 include ../../mixins/form-change-multi.pug
 include ../../mixins/alert.pug
-
+include ../../mixins/sort.pug
 block main 
     +alert-success(5000)
     
@@ -16,7 +16,12 @@ block main
         .card-body
             +fillter-Status(fillterStatus)
 
-   
+    .card.mb-3
+      .card-header Sắp xếp
+      .card-body
+        .row
+          .col-4
+            +sort()
     +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`) 
 
     button 
@@ -43,7 +48,7 @@ block main
                 tr 
                     td  
                         input(type="checkbox" name="id" value=item.id)
-                    td #{index + 1}
+                    td #{pagination.limitItems*(pagination.currentPage-1)+(index+1)}
                     td 
                         img(src=item.thumbnail, alt="" width="100px")
                     td #{item.title}
@@ -59,7 +64,8 @@ block main
                         
                     td 
                         button(data-id=item.id button-delete) xoa
-                        button sua
+                        a(href=`${prefixAdmin}/products/edit/${item.id}`) sua
+                         a(href=`${prefixAdmin}/products/detail/${item.id}`) chi tiet
     +pagination(pagination)
 
     form(action="" method="POST"

@@ -1,0 +1,42 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main 
+    +alert-success(5000)
+    +alert-error(5000)
+    h1 sua san pham
+    form(action=`${prefixAdmin}/products/edit/${product.id}?_method=PATCH` id="form-edit-product" method="POST" enctype="multipart/form-data")
+        div
+            label(for="title") tieu de 
+            input(type="text" id="title" name="title" require value=product.title)
+        div
+            label(for="desc") mo ta
+            textarea(name="description" class="textarea-mce" id="desc"  row = "5") #{product.description}
+        div
+            label(for="price") gia
+            input(id="price" name="price" require type="number" min="0" value=product.price)
+        div
+            label(for="discount") giam gia 
+            input(type="number" id="discount" name="discountPercentage" value=product.discountPercentage min="0")
+        div
+            label(for="stock") so luong 
+            input(type="number" id="stock" name="stock" value=product.stock min="0")
+        div(upload-image)
+            label(for="thumbnail") anh
+            input(type="file" id="thumbnail" name="thumbnail" accept="image/*" upload-image-input)
+            img(src=product.thumbnail upload-image-preview)
+        div
+            label(for="position") vi tri
+            input(type="number" id="position" name="position" min="1" placeholder="tu dong tang" value=product.position)
+        div
+            input(type="radio" id="statusActive" name="status" value="active" checked=(product.status == "active" ? true : false))
+            label(for="statusActive") hoat dong
+        div
+            input(type="radio" id="statusInActive" name="status" value="inactive" checked=(product.status == "inactive" ? true : false) )
+            label(for="statusInActive" ) dung hoat dong
+        div 
+            button(type="submit") cap nhat
+
+
+
+    script(src="/admin/js/product.js")

@@ -3,3 +3,9 @@ mixin alert-success(time)
         .message.info
         div(data-time=time show-alert)
             span= messages.success
+
+mixin alert-error(time)
+    - if (messages.error)
+        .message.info
+        div(data-time=time show-alert) #{messages.error}
+            span(class="ml-5") x

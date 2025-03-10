@@ -11,7 +11,8 @@ block main
             img(src=item.thumbnail, alt='')
             .product_percent
           .inner-content
-            h5.title #{item.title}
+            h5.title 
+              a(href=`/products/${item.slug}`) #{item.title}
           .innner-meta
             .inner-price #{item.price}
             .inner-stock #{item.priceNew}

@@ -1,6 +1,8 @@
 extends ../../layouts/default.pug
+include ../../mixins/alert.pug
 
 block main 
+    +alert-error(5000)
     h1 them san pham
     form(action=`${prefixAdmin}/products/create` id="form-create-product" method="POST" enctype="multipart/form-data")
         div
@@ -8,7 +10,7 @@ block main
             input(type="text" id="title" name="title" require)
         div
             label(for="desc") mo ta
-            textarea(name="description" id="desc"  row = "5")
+            textarea(name="description" class="textarea-mce" id="desc"  row = "5")
         div
             label(for="price") gia
             input(id="price" name="price" require value="0" type="number" min="0")
@@ -18,9 +20,10 @@ block main
         div
             label(for="stock") so luong 
             input(type="number" id="stock" name="stock" value="0" min="0")
-        div
+        div(upload-image)
             label(for="thumbnail") anh
-            input(type="file" id="thumbnail" name="thumbnail" accept="image/*")
+            input(type="file" id="thumbnail" name="thumbnail" accept="image/*" upload-image-input)
+            img(src="" upload-image-preview)
         div
             label(for="position") vi tri
             input(type="number" id="position" name="position" min="1" placeholder="tu dong tang")
